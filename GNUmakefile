@@ -2,13 +2,13 @@ default: testacc
 
 # Run acceptance tests
 .PHONY: testacc
-arch=$(shell /bin/bash ./arch.sh)
 
 testacc:
 	TF_ACC=1 go test ./... -v $(TESTARGS) -timeout 120m
 
-name = scaffolding
-organization = hashicorp
+arch=$(shell /bin/bash ./arch.sh)
+name = example
+organization = hashicraft
 version = 0.1.0
 log_level = info
 
@@ -20,17 +20,17 @@ install: build clean
 	mv bin/terraform-provider-$(name)_v$(version) ~/.terraform.d/plugins/local/$(organization)/$(name)/$(version)/$(arch)/
 
 clean:
-	rm -rf examples/resources/scaffolding_example/.terraform*
-	rm -rf examples/resources/scaffolding_example/terraform.tfstate*
+	rm -rf examples/resources/block/.terraform*
+	rm -rf examples/resources/block/terraform.tfstate*
 
 init:
-	TF_LOG=$(log_level) terraform -chdir=examples/resources/scaffolding_example init
+	TF_LOG=$(log_level) terraform -chdir=examples/resources/block init
 
 plan:
-	TF_LOG=$(log_level) terraform -chdir=examples/resources/scaffolding_example plan
+	TF_LOG=$(log_level) terraform -chdir=examples/resources/block plan
 
 apply:
-	TF_LOG=$(log_level) terraform -chdir=examples/resources/scaffolding_example apply -auto-approve
+	TF_LOG=$(log_level) terraform -chdir=examples/resources/block apply -auto-approve
 
 destroy:
-	TF_LOG=$(log_level) terraform -chdir=examples/resources/scaffolding_example destroy -auto-approve
+	TF_LOG=$(log_level) terraform -chdir=examples/resources/block destroy -auto-approve
