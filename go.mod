@@ -9,7 +9,7 @@ require (
 	github.com/hashicorp/terraform-plugin-log v0.6.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.19.0
 	github.com/sethvargo/go-retry v0.2.3
-	github.com/stretchr/testify v1.7.2
+	github.com/stretchr/testify v1.8.2
 )
 
 require (
